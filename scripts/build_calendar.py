@@ -133,14 +133,13 @@ def to_ical(events: list[CollectionEvent], generated_at: datetime, feed_token: s
         "VERSION:2.0",
         "PRODID:-//calendar-feed//Household Collection Calendar//EN",
         "CALSCALE:GREGORIAN",
-        "METHOD:PUBLISH",
         "X-WR-CALNAME:Household collection",
     ]
 
     for event in events:
         collection_name = TYPE_NAMES[event.collection_type]
         next_day = event.collection_date + timedelta(days=1)
-        uid = f"collection-{uid_namespace}-{event.collection_date:%Y%m%d}-{event.collection_type}@feed"
+        uid = f"collection-{uid_namespace}-{event.collection_date:%Y%m%d}-{event.collection_type}@calendar-feed.invalid"
         lines.extend(
             [
                 "BEGIN:VEVENT",

@@ -43,6 +43,8 @@ class BuildCalendarTests(unittest.TestCase):
         self.assertNotIn(secret_building_id, ical)
         self.assertNotIn("LOCATION:", ical)
         self.assertNotIn("URL:", ical)
+        self.assertNotIn("METHOD:", ical)
+        self.assertIn("@calendar-feed.invalid\r\n", ical)
         self.assertTrue(ical.startswith("BEGIN:VCALENDAR\r\n"))
         self.assertTrue(ical.endswith("END:VCALENDAR\r\n"))
         self.assertTrue(all(len(line.encode("utf-8")) <= 75 for line in ical.split("\r\n") if line))
