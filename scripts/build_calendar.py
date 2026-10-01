@@ -149,6 +149,11 @@ def to_ical(events: list[CollectionEvent], generated_at: datetime, feed_token: s
                 f"DTSTART;VALUE=DATE:{event.collection_date:%Y%m%d}",
                 f"DTEND;VALUE=DATE:{next_day:%Y%m%d}",
                 f"SUMMARY:{collection_name}",
+                "BEGIN:VALARM",
+                "ACTION:DISPLAY",
+                f"DESCRIPTION:{collection_name} tomorrow",
+                "TRIGGER:-PT8H",
+                "END:VALARM",
                 "END:VEVENT",
             ]
         )
